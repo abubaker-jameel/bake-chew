@@ -10,7 +10,7 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 
 // Required Module
-import { EffectCreative, Autoplay } from "swiper";
+const { EffectCreative, Autoplay } = require("swiper");
 
 type HomeProps = {
   title: string;
