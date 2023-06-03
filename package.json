@@ -17,10 +17,11 @@
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.11.1",
-    "swiper": "^9.3.1"
+    "swiper": "^9.3.2"
   },
   "devDependencies": {
     "@types/fslightbox-react": "^1.7.3",
+    "@types/node": "^20.1.4",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@types/react-modal": "^3.16.0",
