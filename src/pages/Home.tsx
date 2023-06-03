@@ -3,13 +3,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Review from "../components/Review";
 import { logo, testimonials, heroImages1, heroImages2 } from "../constants";
 import { styles } from "../style";
-import Footer from "../components/Footer";
-
+// import cakeImage7 from "../assets/cakeImage7.jpg"
 // Swiper Styles
 import "swiper/css";
 import "swiper/css/effect-creative";
 
 // Required Module
+// @ts-ignore: Unreachable code error
 import { EffectCreative, Autoplay } from "swiper";
 
 type HomeProps = {
@@ -19,12 +19,17 @@ type HomeProps = {
 const testimonialReview = testimonials.map((rev): ReactElement => {
   return (
     <SwiperSlide key={rev.id}>
-      <Review name={rev.name} review={rev.review} img={rev.img} />
+      <Review
+        cakeType={rev.cakeType}
+        name={rev.name}
+        review={rev.review}
+        bgImg={rev.bgImg}
+      />
     </SwiperSlide>
   );
 });
 
-const heroImage1 = heroImages1.map((img): ReactElement => {
+const heroImagesSlide1 = heroImages1.map((img): ReactElement => {
   return (
     <SwiperSlide key={img.id}>
       <img
@@ -35,7 +40,7 @@ const heroImage1 = heroImages1.map((img): ReactElement => {
     </SwiperSlide>
   );
 });
-const heroImage2 = heroImages2.map((img): ReactElement => {
+const heroImagesSlide2 = heroImages2.map((img): ReactElement => {
   return (
     <SwiperSlide key={img.id}>
       <img
@@ -50,11 +55,15 @@ const Home = ({ title }: HomeProps): ReactElement => {
   return (
     <>
       {/* Hero Section */}
-      <section className="container">
-        <div className={styles.flexCenter}>
-          <img src={logo.source} alt={logo.name} className="w-1/5 my-6" />
+      <section className="pt-14">
+        <div className={`${styles.flexCenter} h-20 xl:h-24 2xl:h-40`}>
+          <img
+            src={logo.source}
+            alt={logo.name}
+            className="object-contain w-full h-full px-5"
+          />
         </div>
-        <div className={`flex gap-5 `}>
+        <div className={`flex gap-5`}>
           <Swiper
             speed={500}
             allowTouchMove={false}
@@ -65,12 +74,12 @@ const Home = ({ title }: HomeProps): ReactElement => {
               disableOnInteraction: true,
               pauseOnMouseEnter: false,
             }}
-            className="mySwiper bg-amber-50  max-h-[720px] basis-full"
+            className="mySwiper bg-amber-50  h-[720px] flex-1 hidden xl:block xl:h-[36rem] 2xl:h-[46rem]"
           >
-            {heroImage1}
+            {heroImagesSlide1}
           </Swiper>
-          <div className="bg-amber-50 h-[720px] basis-full flex justify-center items-center">
-            <h1 className="text-2xl font-thin max-w-[14rem] text-center  capitalize tracking-widest">
+          <div className="flex-1 relative bg-amber-50 h-[45rem] flex justify-center items-center bg-[url('./assets/cakeImage7.jpg')] bg-cover bg-no-repeat before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-[rgba(0,0,0,.4)] overflow-hidden z-10 xl:h-[36rem] 2xl:h-[46rem]">
+            <h1 className="text-lg md:text-xl 2xl:text-2xl font-bold  max-w-[18rem] text-center  capitalize tracking-widest text-white opacity-80">
               {title}
             </h1>
           </div>
@@ -84,18 +93,25 @@ const Home = ({ title }: HomeProps): ReactElement => {
               disableOnInteraction: true,
               pauseOnMouseEnter: false,
             }}
-            className="mySwiper bg-amber-50  max-h-[720px] basis-full"
+            className="mySwiper bg-amber-50  h-[720px] flex-1 hidden xl:block xl:h-[36rem] 2xl:h-[46rem]"
           >
-            {heroImage2}
+            {heroImagesSlide2}
           </Swiper>
         </div>
       </section>
+
+      {/* Tailored Section */}
+      <section className="relative w-full h-40 grid place-items-center bg-[url('./assets/tailoredImg.jpg')] bg-no-repeat bg-cover bg-bottom before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-[rgba(0,0,0,.4)] z-10 mt-10">
+        <h1 className="text-lg md:text-xl 2xl:text-2xl px-2 text-center font-bold opacity-90 text-white uppercase">
+          ALL CAKES ARE TAILORED TO YOUR TASTE AND STYLE
+        </h1>
+      </section>
       {/* Testimonial Section */}
-      <section className="container py-[8rem]">
+      <section className="mb-5">
         <div className="flex justify-center items-center">
-          <h1 className="text-2xl font-bold text-gray-800 capitalize">
+          <h3 className="text-2xl md:text-3xl 2xl:text-4xl font-bold text-gray-800 uppercase py-5">
             Testimonials
-          </h1>
+          </h3>
         </div>
         <Swiper
           speed={500}
@@ -119,10 +135,10 @@ const Home = ({ title }: HomeProps): ReactElement => {
         >
           {testimonialReview}
         </Swiper>
-        <h6 className="text-sm text-center">Slide to see more reviews</h6>
+        <h6 className="text-xs lg:text-sm text-center">
+          Slide to see more reviews
+        </h6>
       </section>
-
-      <Footer />
     </>
   );
 };

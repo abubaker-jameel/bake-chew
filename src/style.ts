@@ -11,8 +11,4 @@ const styles = {
   marginY: "sm:my-16 my-6",
 };
 
-// const layouts = {
-//   sectionHome: ""
-// }
-
 export { styles };
